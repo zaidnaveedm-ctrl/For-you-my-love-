@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For My Love ❤️</title>
+  <style>
+    /* Existing styles */
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      color: #333;
+      text-align: center;
+      overflow-x: hidden;
+    }
+    h1 {
+      font-size: 3em;
+      color: #e63946;
+      margin-top: 20px;
+    }
+    /* Loading screen */
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 999;
+    }
+    #loading-screen button {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 30px;
+      background: #e63946;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    #main-content {
+      display: none;
+      padding: 20px;
+    }
+    /* Envelope container */
+    .envelope {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      margin: 30px auto;
+      perspective: 1000px;
+      cursor: pointer;
+    }
+    .flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #e63946;
+      clip-path: polygon(0 0, 100% 0, 50% 60%);
+      transform-origin: top;
+      transition: transform 1s;
+      z-index: 2;
+    }
+    .envelope.open .flap {
+      transform: rotateX(-180deg);
+    }
+    .letter {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      transform: translateY(100%);
+      transition: transform 1s;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .envelope.open .letter {
+      transform: translateY(0);
+    }
+    .notes {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+    }
+    .note {
+      width: 280px;
+      height: 120px;
+      perspective: 1000px;
+      cursor: pointer;
+    }
+    .note-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+    .note.flipped .note-inner {
+      transform: rotateY(180deg);
+    }
+    .note-front, .note-back {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 15px;
+      padding: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .note-front {
+      background: #fff0f3;
+    }
+    .note-back {
+      background: #ffe6eb;
+      transform: rotateY(180deg);
+    }
+    iframe {
+      margin-top: 30px;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    footer {
+      margin-top: 50px;
+      font-size: 0.9em;
+      color: #555;
+    }
+    /* Floating hearts */
+    .heart {
+      position: fixed;
+      bottom: -10px;
+      color: #e63946;
+      font-size: 24px;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.8;
+      z-index: 1;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+    }
+    /* Sparkle effect */
+    .sparkle {
+      position: fixed;
+      pointer-events: none;
+      color: gold;
+      font-size: 16px;
+      animation: fadeSparkle 1s linear forwards;
+      z-index: 3;
+    }
+    @keyframes fadeSparkle {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(0); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading screen -->
+  <div id="loading-screen">
+    <h1>💖 Tap to open your surprise 💖</h1>
+    <button id="openBtn">Open Surprise 💌</button>
+  </div>  
+
+  <!-- Main content -->
+  <div id="main-content">
+    <h1>For My Love ❤️</h1>
+    <div class="envelope" id="envelope">
+      <div class="flap"></div>
+      <div class="letter">
+        <p>My dearest love,</p>
+        <p>I made this little website just for you — because you deserve something as special and unique as you are. You brighten my days, make me laugh, and fill my heart with so much love. This is my way of reminding you how much you mean to me. 💕</p>
+        <p>Forever yours,<br>💌 Zaid Naveed</p>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h2>Reasons I Love You 💖</h2>
+      <div class="note">
+        <div class="note-inner">
+          <div class="note-front">Your smile makes the world brighter ✨</div>
+          <div class="note-back">Because it lights up even my darkest days 🌞</div>
+        </div>
+      </div>
+      <div class="note">
+        <div class="note-inner">
+          <div class="note-front">You always know how to cheer me up 🌸</div>
+          <div class="note-back">Your laughter is the sweetest sound 🎶</div>
+        </div>
+      </div>
+      <div class="note">
+        <div class="note-inner">
+          <div class="note-front">You are my safe place and my adventure all in one 🌍</div>
+          <div class="note-back">With you, I feel both calm and excited 💕</div>
+        </div>
+      </div>
+      <div class="note">
+        <div class="note-inner">
+          <div class="note-front">Every moment with you feels like magic 💫</div>
+          <div class="note-back">Because you are my miracle ✨</div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Our Song 🎶</h2>
+    <button id="playBtn">Play Our Song</button>
+    <audio id="ourSong" controls>
+      <source src="https://open.spotify.com/track/5XeFesFbtLpXzIVDNQP22n" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+
+    <footer>
+      Made with ❤️ just for you
+    </footer>
+  </div>  
+
+  <!-- Sound effect -->
+  <audio id="openSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_9f5c4e63e1.mp3?filename=page-flip-110379.mp3"></audio>
+
+  <script>
+    // Floating hearts
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerText = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 20 + "px";
+      heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 6000);
+    }
+    setInterval(createHeart, 500);
+
+    // Sparkles
+    function createSparkle(x, y) {
+      const sparkle = document.createElement("div");
+      sparkle.classList.add("sparkle");
+      sparkle.innerText = "✨";
+      sparkle.style.left = x + "px";
+      sparkle.style.top = y + "px";
+      sparkle.style.fontSize = Math.random() * 10 + 15 + "px";
+      document.body.appendChild(sparkle);
+
+      setTimeout(() => {
+        sparkle.remove();
+      }, 1000);
+    }
+
+    document.addEventListener("mousemove", (e) => {
+      createSparkle(e.pageX, e.pageY);
+    });
+    document.addEventListener("touchmove", (e) => {
+      for (let touch of e.touches) {
+        createSparkle(touch.pageX, touch.pageY);
+      }
+    });
+
+    // Flip notes
+    document.querySelectorAll(".note").0
